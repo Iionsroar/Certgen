@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1080</width>
-    <height>700</height>
+    <width>1100</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>40</y>
-      <width>864</width>
-      <height>560</height>
+      <y>20</y>
+      <width>811</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -30,10 +30,16 @@
      </size>
     </property>
     <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
+     <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="acceptDrops">
      <bool>false</bool>
+    </property>
+    <property name="whatsThis">
+     <string>Certificate Preview</string>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -42,17 +48,295 @@
      <enum>QFrame::Raised</enum>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>&lt;Certificate Preview Here&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QListWidget" name="names">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>300</y>
+      <width>211</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionRectVisible">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="options">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>90</y>
+      <width>211</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>209</width>
+       <height>209</height>
+      </rect>
+     </property>
+     <widget class="QSlider" name="hSlider">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>160</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="vSlider">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>49</y>
+        <width>20</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkBold">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>72</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bold</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkItalic">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>72</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Italic</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkUnderline">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>72</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Underline</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="fontFamily">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>110</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Times New Roman</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Serif</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Calibri</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>72</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Center</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>End</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_3">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>140</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>12</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>24</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>36</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>48</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>56</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>72</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="filesArea">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>20</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>209</width>
+       <height>69</height>
+      </rect>
+     </property>
+     <widget class="QPushButton" name="loadTemp">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load Certificate Template</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="loadNames">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load Names File</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="generate">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>500</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GENERATE CERTIFICATES</string>
+    </property>
+   </widget>
+   <zorder>names</zorder>
+   <zorder>certificatePreview</zorder>
+   <zorder>options</zorder>
+   <zorder>filesArea</zorder>
+   <zorder>generate</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1080</width>
-     <height>21</height>
+     <width>1100</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOpen_Template">
