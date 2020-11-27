@@ -11,11 +11,18 @@ QT_END_NAMESPACE
 
 extern QString previewName;
 extern QString templateFile;
+
 extern qreal templateWidth;
 extern qreal templateHeight;
+
 extern QString fontFamily;
 extern QString fontAlign;
 extern qint32 fontSize;
+
+extern bool isBold;
+extern bool isItalic;
+extern bool isUnderline;
+
 extern qreal xPos;
 extern qreal yPos;
 

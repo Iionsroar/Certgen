@@ -1,7 +1,7 @@
 #include "globals.h"
 #include <QString>
 
-QString previewName;
+QString previewName = "";
 
 QString templateFile;
 qreal templateWidth;
@@ -9,8 +9,12 @@ qreal templateHeight;
 
 QString fontFamily = "Times";
 QString fontAlign;
-qint32 fontSize = 46;
+qint32 fontSize = 48;
 
-qreal xPos = 0.0;
-qreal yPos = 10.0;
+qreal xPos = 50.0;
+qreal yPos = 60.2;
+
+bool isBold = false;
+bool isItalic = false;
+bool isUnderline = false;
 

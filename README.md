@@ -18,12 +18,12 @@ Desktop application for generating certificates from a list of names (file forma
 
 Requisites of Preliminary Working App For Deadline Submission:
 1. ~~Load Template~~
-2. Load Names
-	- QImage add text to image
-3. Add delete name functionality
-	- QListWidget add delete button
-4. Edit x & y coordinates of preview name AND font size
-	- QImage Edit text attributes
+2. ~~Load Names~~
+	~~- QImage add text to image~~
+3. ~~Add name selection functionality~~
+4. ~~Edit x & y coordinates of preview name~~
+4. ~~bold italic underline~~
+5. font size
 5. Generate PDF file
 6. Print Functionality
 

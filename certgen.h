@@ -57,6 +57,20 @@ private slots:
 
     void on_names_itemClicked(QListWidgetItem *item);
 
+    void on_vSlider_valueChanged(int value);
+
+    void on_hSlider_valueChanged(int value);
+
+    void on_chkBold_stateChanged(int arg1);
+
+    void on_chkItalic_stateChanged(int arg1);
+
+    void on_chkUnderline_stateChanged(int arg1);
+
+    void on_fontSize_activated(const QString &arg1);
+
+    void on_fontFamily_activated(const QString &arg1);
+
 private:
     Ui::Certgen *ui;
     QString currentTemplate;

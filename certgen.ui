@@ -50,6 +50,9 @@
     <property name="text">
      <string>&lt;Certificate Preview Here&gt;</string>
     </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -106,6 +109,9 @@
         <height>16</height>
        </rect>
       </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -119,8 +125,20 @@
         <height>141</height>
        </rect>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
+      <property name="sliderPosition">
+       <number>60</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
+      </property>
+      <property name="invertedAppearance">
+       <bool>true</bool>
+      </property>
+      <property name="invertedControls">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QCheckBox" name="chkBold">
@@ -186,40 +204,43 @@
         <string>Calibri</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Arial</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Courier New</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Montserrat</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Georgia</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Verdana</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="fontSize">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>140</y>
-        <width>72</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Center</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Start</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>End</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_3">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>140</y>
         <width>41</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="currentText">
+       <string>48</string>
       </property>
       <item>
        <property name="text">
@@ -256,6 +277,25 @@
         <string>72</string>
        </property>
       </item>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>98</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Edit text&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
      </widget>
     </widget>
    </widget>

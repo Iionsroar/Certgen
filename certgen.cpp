@@ -46,10 +46,13 @@ Certgen::~Certgen()
 
 bool Certgen::generateHQ()
 {
+    qreal convertedXPos = xPos/100*templateWidth;
+    qreal convertedYPos = yPos/100*templateHeight;
+    QRect rectangle = QRect(convertedXPos, convertedYPos,
+                            templateWidth, templateHeight);
+
     QImage templateImg(templateFile);
     QPainter p;
-    QRect rectangle = QRect(xPos/100*templateWidth, yPos/100*templateHeight,
-                            templateWidth, templateHeight);
 
     if (!p.begin(&templateImg)) {
         QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
@@ -59,8 +62,19 @@ bool Certgen::generateHQ()
     }
 
     p.setPen(QPen(Qt::black));
-    p.setFont(QFont(fontFamily, fontSize, QFont::Bold));
-    p.drawText(rectangle, Qt::AlignCenter, previewName);
+
+    QFont font = QFont(fontFamily, fontSize);
+    font.setBold(isBold);
+    font.setItalic(isItalic);
+    font.setUnderline(isUnderline);
+
+    p.setFont(font);
+
+    qreal width = p.boundingRect(rectangle, Qt::AlignCenter, previewName).width();
+    qreal height = p.boundingRect(rectangle, Qt::AlignCenter, previewName).height();
+
+//    p.drawText(rectangle, Qt::AlignCenter, previewName);
+    p.drawText(QRect(convertedXPos - width/2, convertedYPos - height/2, width, height), Qt::AlignCenter, previewName);
     ui->certificatePreview->setPixmap(QPixmap::fromImage(templateImg));
 
     return true;
@@ -78,9 +92,7 @@ bool Certgen::loadTemplate()
 
     // MISSING if statement for handling errors and returning false
 
-    QPixmap pm(templateFileName);
-    ui->certificatePreview->setPixmap(pm);
-    ui->certificatePreview->setScaledContents(true);
+    generateHQ();
     return true;
 }
 
@@ -169,5 +181,49 @@ void Certgen::on_names_itemClicked(QListWidgetItem *item)
 {
     QCheckBox *chkbox = qobject_cast<QCheckBox *> (ui->names->itemWidget(item));
     previewName = chkbox->text();
+    generateHQ();
+}
+
+
+void Certgen::on_hSlider_valueChanged(int value)
+{
+    xPos = value;
+    generateHQ();
+}
+
+void Certgen::on_vSlider_valueChanged(int value)
+{
+    yPos = value;
+    generateHQ();
+}
+
+
+void Certgen::on_chkBold_stateChanged(int arg1)
+{
+    isBold = arg1;
+    generateHQ();
+}
+
+void Certgen::on_chkItalic_stateChanged(int arg1)
+{
+    isItalic = arg1;
+    generateHQ();
+}
+
+void Certgen::on_chkUnderline_stateChanged(int arg1)
+{
+    isUnderline = arg1;
+    generateHQ();
+}
+
+void Certgen::on_fontSize_activated(const QString &arg1)
+{
+    fontSize = arg1.toInt();
+    generateHQ();
+}
+
+void Certgen::on_fontFamily_activated(const QString &arg1)
+{
+    fontFamily = arg1;
     generateHQ();
 }
