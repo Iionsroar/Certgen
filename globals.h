@@ -10,6 +10,7 @@ QT_END_NAMESPACE
 #define MAGIC_NUM 42
 
 extern QString previewName;
+extern QList<QString> loadedNames;
 extern QString templateFile;
 
 extern qreal templateWidth;

@@ -2,6 +2,7 @@
 #include "ui_certgen.h"
 #include "globals.h"
 
+#include <QDesktopServices>
 #include <QDir>
 #include <QFileDialog>
 #include <QGuiApplication>
@@ -9,7 +10,11 @@
 #include <QImage>
 #include <QMessageBox>
 #include <QPainter>
+#include <QPageSize>
+#include <QPdfWriter>
 #include <QPixmap>
+#include <QSizeF>
+#include <QUrl>
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -44,7 +49,7 @@ Certgen::~Certgen()
     delete ui;
 }
 
-bool Certgen::generateHQ()
+QImage Certgen::generateHQ()
 {
     qreal convertedXPos = xPos/100*templateWidth;
     qreal convertedYPos = yPos/100*templateHeight;
@@ -58,7 +63,7 @@ bool Certgen::generateHQ()
         QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
                                  tr("Cannot load %1 for preview")
                                  .arg(QDir::toNativeSeparators(templateFile)));
-        return false;
+        return QImage();
     }
 
     p.setPen(QPen(Qt::black));
@@ -73,16 +78,15 @@ bool Certgen::generateHQ()
     qreal width = p.boundingRect(rectangle, Qt::AlignCenter, previewName).width();
     qreal height = p.boundingRect(rectangle, Qt::AlignCenter, previewName).height();
 
-//    p.drawText(rectangle, Qt::AlignCenter, previewName);
     p.drawText(QRect(convertedXPos - width/2, convertedYPos - height/2, width, height), Qt::AlignCenter, previewName);
     ui->certificatePreview->setPixmap(QPixmap::fromImage(templateImg));
 
-    return true;
+    return templateImg;
 }
 
 bool Certgen::loadTemplate()
 {
-    QString templateFileName = QFileDialog::getOpenFileName(this, "Open a template");
+    QString templateFileName = QFileDialog::getOpenFileName(this, "Open a template", ".", tr("All Supported Filetypes (*.jpg;*.jpeg;*.png)"));
     templateFile = templateFileName;
 
     QImageReader reader(templateFile);
@@ -101,7 +105,7 @@ void Certgen::on_loadTemp_clicked() {loadTemplate();}
 
 void Certgen::on_loadNames_clicked()
 {
-    QString namesFile = QFileDialog::getOpenFileName(this, "Open a spreadsheet file containing names (.xlsx, .xls)");
+    QString namesFile = QFileDialog::getOpenFileName(this, "Open a file containing names", ".", tr("All Supported Filetypes (*.xlsx;*.xls)"));
 
     // reading excel files
     Document xlsxR(namesFile);
@@ -157,6 +161,8 @@ void Certgen::on_loadNames_clicked()
             for (int cc = 0; cc < maxCol; cc++)
             {
                 QString strCell = cellValues[rc][cc];
+                loadedNames.append(strCell);
+
                 QListWidgetItem * item = new QListWidgetItem();
                 QCheckBox *chkbox = new QCheckBox(strCell);
                 chkbox->setChecked(true);
@@ -226,4 +232,27 @@ void Certgen::on_fontFamily_activated(const QString &arg1)
 {
     fontFamily = arg1;
     generateHQ();
+}
+
+void Certgen::on_generate_clicked()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save file"), ".", tr("Files (*.pdf)"));
+    QPdfWriter writer(filename);
+
+    writer.setPageOrientation(QPageLayout::Landscape);
+    writer.setResolution(74);
+    writer.setPageSize(QPageSize(QSizeF(templateHeight, templateWidth), QPageSize::Point));
+
+    QPoint imageCoordinates(0, 0);
+    QPainter pdfPainter(&writer);
+
+    foreach(const QString& name, loadedNames)
+    {
+        previewName = name;
+        pdfPainter.drawImage(imageCoordinates, generateHQ());
+        writer.newPage();
+    }
+
+    pdfPainter.save();
+    QDesktopServices::openUrl(QUrl(filename));
 }

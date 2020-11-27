@@ -23,10 +23,10 @@ Requisites of Preliminary Working App For Deadline Submission:
 3. ~~Add name selection functionality~~
 4. ~~Edit x & y coordinates of preview name~~
 4. ~~bold italic underline~~
-5. font size
-5. Generate PDF file
+5. ~~font size~~
+5. ~~Generate PDF file~~
 6. Print Functionality
-
+7. Dynamic addition and removal of names from the global loadedNames
 
 
 Bugs to skip

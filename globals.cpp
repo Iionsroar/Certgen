@@ -1,7 +1,9 @@
 #include "globals.h"
 #include <QString>
+#include <QList>
 
 QString previewName = "";
+QList<QString> loadedNames;
 
 QString templateFile;
 qreal templateWidth;
